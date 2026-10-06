@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth bg-[#0a0a0a]">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FOTOGRAFÍA | RUBIO FILMS</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@300;400;500;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'brand-black': '#0a0a0a',
+                        'brand-charcoal': '#161616',
+                        'brand-gray': '#2a2a2a',
+                        'brand-white': '#e5e5e5',
+                        'brand-red': '#9b0000',
+                    },
+                    fontFamily: {
+                        'anton': ['Anton', 'sans-serif'],
+                        'inter': ['Inter', 'sans-serif'],
+                        'mono': ['Space Mono', 'monospace'],
+                    },
+                    animation: {
+                        'noise': 'noise 0.4s infinite',
+                        'marquee': 'marquee 20s linear infinite',
+                        'blink': 'blink 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    },
+                    keyframes: {
+                        noise: {
+                            '0%, 100%': { backgroundPosition: '0 0' },
+                            '10%': { backgroundPosition: '-5% -10%' },
+                            '20%': { backgroundPosition: '-15% 5%' },
+                            '30%': { backgroundPosition: '7% -25%' },
+                            '40%': { backgroundPosition: '20% 25%' },
+                            '50%': { backgroundPosition: '-25% 10%' },
+                            '60%': { backgroundPosition: '15% 5%' },
+                            '70%': { backgroundPosition: '0% 15%' },
+                            '80%': { backgroundPosition: '25% 35%' },
+                            '90%': { backgroundPosition: '-10% 10%' },
+                        },
+                        marquee: {
+                            '0%': { transform: 'translateX(0%)' },
+                            '100%': { transform: 'translateX(-100%)' },
+                        },
+                        blink: {
+                            '0%, 100%': { opacity: 1 },
+                            '50%': { opacity: 0.3 },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            color: #e5e5e5;
+            overflow-x: hidden;
+        }
+        .film-grain {
+            position: fixed;
+            top: -50%; left: -50%; right: -50%; bottom: -50%;
+            width: 200%; height: 200vh;
+            background: transparent url('data:image/svg+xml,%3Csvg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"%3E%3Cfilter id="noiseFilter"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" stitchTiles="stitch"/%3E%3C/filter%3E%3Crect width="100%25" height="100%25" filter="url(%23noiseFilter)" opacity="0.12"/%3E%3C/svg%3E');
+            pointer-events: none;
+            z-index: 9999;
+            animation: noise 0.3s infinite;
+        }
+        .raw-filter {
+            filter: grayscale(100%) contrast(140%) brightness(80%);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .raw-filter:hover, .group:hover .raw-filter {
+            filter: grayscale(0%) contrast(110%) brightness(100%);
+        }
+        .tape {
+            position: absolute;
+            background-color: rgba(255, 255, 255, 0.3);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+            backdrop-filter: blur(3px);
+        }
+        .contact-sheet-img {
+            position: relative;
+            overflow: hidden;
+        }
+        .contact-sheet-img::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border: 1px solid #2a2a2a;
+            pointer-events: none;
+            transition: border-color 0.3s;
+        }
+        .contact-sheet-img:hover::after {
+            border-color: #9b0000;
+        }
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0a0a0a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #2a2a2a;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #9b0000;
+        }
+    </style>
+</head>
+<body class="font-inter antialiased selection:bg-brand-red selection:text-white">
+
+    <div class="film-grain"></div>
+
+    <!-- Header Navigation -->
+    <header class="fixed w-full top-0 z-50 bg-brand-black/90 backdrop-blur-md border-b border-brand-gray">
+        <div class="container mx-auto px-6 py-5 flex flex-wrap justify-between items-center">
+            <a href="RubioFilms.html" class="font-anton text-3xl tracking-wider text-brand-white hover:text-brand-red transition-colors z-20">
+                RUBIO FILMS<span class="text-brand-red">.</span>
+            </a>
+            
+            <button id="mobile-menu-btn" class="md:hidden text-brand-white z-20 focus:outline-none">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="square" stroke-linejoin="miter" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+
+            <nav id="nav-menu" class="hidden md:flex flex-col md:flex-row absolute md:relative top-full left-0 w-full md:w-auto bg-brand-black md:bg-transparent border-b md:border-none border-brand-gray md:space-x-8 font-mono text-sm tracking-widest uppercase p-6 md:p-0 z-10">
+                <a href="RubioFilms.html#enfoque" class="py-3 md:py-0 hover:text-brand-red transition-colors">El Enfoque</a>
+                <a href="cine.html" class="py-3 md:py-0 hover:text-brand-red transition-colors">Cine</a>
+                <a href="RubioFilms.html#historias" class="py-3 md:py-0 hover:text-brand-red transition-colors">Historia</a>
+                <a href="contacto.html" class="py-3 md:py-0 hover:text-brand-red transition-colors">Contacto</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="pt-28 min-h-screen pb-20">
+        
+        <!-- Hero Title Section -->
+        <section class="container mx-auto px-6 py-12 border-b border-brand-gray mb-16">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-6">
+                <div>
+                    <span class="font-mono text-brand-red text-xs tracking-widest uppercase block mb-3">ARCHIVO DE PLACAS // 2024 - 2026</span>
+                    <h1 class="font-anton text-6xl md:text-8xl uppercase text-brand-white">Fotografía <br> Documental</h1>
+                </div>
+                <div class="max-w-md font-inter text-gray-400 text-sm md:text-base leading-relaxed">
+                    <p>Cada boda es un rollo único expuesto sin filtros. Revelamos la energía real, los abrazos sudorosos, las lágrimas sin pose y la verdadera estética del caos nocturno.</p>
+                </div>
+            </div>
+
+            <!-- Filter Buttons -->
+            <div class="flex flex-wrap gap-3 mt-10 font-mono text-xs uppercase tracking-wider">
+                <button onclick="filterPhotos('all')" class="filter-btn px-5 py-2.5 bg-brand-red text-white border border-brand-red transition-all font-bold" data-filter="all">TODAS LAS PLACAS</button>
+                <button onclick="filterPhotos('ceremonia')" class="filter-btn px-5 py-2.5 bg-brand-black text-gray-400 border border-brand-gray hover:border-brand-white hover:text-white transition-all" data-filter="ceremonia">CEREMONIA & INTIMIDAD</button>
+                <button onclick="filterPhotos('fiesta')" class="filter-btn px-5 py-2.5 bg-brand-black text-gray-400 border border-brand-gray hover:border-brand-white hover:text-white transition-all" data-filter="fiesta">PISTA & CAOS</button>
+                <button onclick="filterPhotos('editorial')" class="filter-btn px-5 py-2.5 bg-brand-black text-gray-400 border border-brand-gray hover:border-brand-white hover:text-white transition-all" data-filter="editorial">EDITORIAL / RETRATO</button>
+            </div>
+        </section>
+
+        <!-- Photo Gallery Grid -->
+        <section class="container mx-auto px-6">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="gallery-grid">
+                
+                <!-- Item 1 -->
+                <div class="gallery-item fiesta contact-sheet-img bg-brand-charcoal aspect-[4/5] cursor-pointer group" data-category="fiesta">
+                    <span class="absolute top-3 left-3 z-10 font-mono text-xs text-brand-red bg-brand-black/80 px-2 py-0.5 border border-brand-gray">PLACA #01</span>
+                    <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&q=80&w=900" alt="Fiesta nocturna" class="w-full h-full object-cover raw-filter">
+                    <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6 pointer-events-none">
+                        <span class="font-mono text-xs text-brand-red">CIUDAD DE MÉXICO</span>
+                        <h3 class="font-anton text-2xl text-white uppercase">Noche sin fin</h3>
+                    </div>
+                </div>
+
+                <!-- Item 2 -->
+                <div class="gallery-item ceremonia contact-sheet-img bg-brand-charcoal aspect-[4/5] cursor-pointer group" data-category="ceremonia">
+                    <span class="absolute top-3 left-3 z-10 font-mono text-xs text-brand-red bg-brand-black/80 px-2 py-0.5 border border-brand-gray">PLACA #02</span>
+                    <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=900" alt="Ceremonia íntima" class="w-full h-full object-cover raw-filter">
+                    <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6 pointer-events-none">
+                        <span class="font-mono text-xs text-brand-red">OAXACA</span>
+                        <h3 class="font-anton text-2xl text-white uppercase">Promesa al atardecer</h3>
+                    </div>
+                </div>
+
+                <!-- Item 3 -->
+                <div class="gallery-item editorial contact-sheet-img bg-brand-charcoal aspect-[4/5] cursor-pointer group" data-category="editorial">
+                    <span class="absolute top-3 left-3 z-10 font-mono text-xs text-brand-red bg-brand-black/80 px-2 py-0.5 border border-brand-gray">PLACA #03</span>
+                    <img src="https://images.unsplash.com/photo-1543269865-cbf427effbad?auto=format&fit=crop&q=80&w=900" alt="Retrato editorial" class="w-full h-full object-cover raw-filter">
+                    <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6 pointer-events-none">
+                        <span class="font-mono text-xs text-brand-red">SAN MIGUEL DE ALLENDE</span>
+                        <h3 class="font-anton text-2xl text-white uppercase">Retrato en callejón</h3>
+                    </div>
+                </div>
+
+                <!-- Item 4 -->
+                <div class="gallery-item fiesta contact-sheet-img bg-brand-charcoal aspect-[4/5] cursor-pointer group" data-category="fiesta">
+                    <span class="absolute top-3 left-3 z-10 font-mono text-xs text-brand-red bg-brand-black/80 px-2 py-0.5 border border-brand-gray">PLACA #04</span>
+                    <img src="https://images.unsplash.com/photo-1520854221256-17451cc331bf?auto=format&fit=crop&q=80&w=900" alt="Pista de baile" class="w-full h-full object-cover raw-filter">
+                    <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6 pointer-events-none">
+                        <span class="font-mono text-xs text-brand-red">MONTERREY</span>
+                        <h3 class="font-anton text-2xl text-white uppercase">Flash directo en pista</h3>
+                    </div>
+                </div>
+
+                <!-- Item 5 -->
+                <div class="gallery-item ceremonia contact-sheet-img bg-brand-charcoal aspect-[4/5] cursor-pointer group" data-category="ceremonia">
+                    <span class="absolute top-3 left-3 z-10 font-mono text-xs text-brand-red bg-brand-black/80 px-2 py-0.5 border border-brand-gray">PLACA #05</span>
+                    <img src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?auto=format&fit=crop&q=80&w=900" alt="Detalle de manos" class="w-full h-full object-cover raw-filter">
+                    <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6 pointer-events-none">
+                        <span class="font-mono text-xs text-brand-red">TULUM</span>
+                        <h3 class="font-anton text-2xl text-white uppercase">Texturas de la costa</h3>
+                    </div>
+                </div>
+
+                <!-- Item 6 -->
+                <div class="gallery-item editorial contact-sheet-img bg-brand-charcoal aspect-[4/5] cursor-pointer group" data-category="editorial">
+                    <span class="absolute top-3 left-3 z-10 font-mono text-xs text-brand-red bg-brand-black/80 px-2 py-0.5 border border-brand-gray">PLACA #06</span>
+                    <img src="https://images.unsplash.com/photo-1545620948-261ce38f65e4?auto=format&fit=crop&q=80&w=900" alt="Editorial novios" class="w-full h-full object-cover raw-filter">
+                    <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6 pointer-events-none">
+                        <span class="font-mono text-xs text-brand-red">GUADALAJARA</span>
+                        <h3 class="font-anton text-2xl text-white uppercase">Siluetas urbanas</h3>
+                    </div>
+                </div>
+
+                <!-- Item 7 -->
+                <div class="gallery-item fiesta contact-sheet-img bg-brand-charcoal aspect-[4/5] cursor-pointer group" data-category="fiesta">
+                    <span class="absolute top-3 left-3 z-10 font-mono text-xs text-brand-red bg-brand-black/80 px-2 py-0.5 border border-brand-gray">PLACA #07</span>
+                    <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=80&w=900" alt="Invitados brindando" class="w-full h-full object-cover raw-filter">
+                    <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6 pointer-events-none">
+                        <span class="font-mono text-xs text-brand-red">VALLE DE BRADIA</span>
+                        <h3 class="font-anton text-2xl text-white uppercase">Brindis descontrolado</h3>
+                    </div>
+                </div>
+
+                <!-- Item 8 -->
+                <div class="gallery-item ceremonia contact-sheet-img bg-brand-charcoal aspect-[4/5] cursor-pointer group" data-category="ceremonia">
+                    <span class="absolute top-3 left-3 z-10 font-mono text-xs text-brand-red bg-brand-black/80 px-2 py-0.5 border border-brand-gray">PLACA #08</span>
+                    <img src="https://images.unsplash.com/photo-1536882240095-0379873feb4e?auto=format&fit=crop&q=80&w=900" alt="Emoción familiar" class="w-full h-full object-cover raw-filter">
+                    <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6 pointer-events-none">
+                        <span class="font-mono text-xs text-brand-red">CDMX</span>
+                        <h3 class="font-anton text-2xl text-white uppercase">Abrazo sin filtro</h3>
+                    </div>
+                </div>
+
+                <!-- Item 9 -->
+                <div class="gallery-item editorial contact-sheet-img bg-brand-charcoal aspect-[4/5] cursor-pointer group" data-category="editorial">
+                    <span class="absolute top-3 left-3 z-10 font-mono text-xs text-brand-red bg-brand-black/80 px-2 py-0.5 border border-brand-gray">PLACA #09</span>
+                    <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&q=80&w=900" alt="Moda nupcial alternativa" class="w-full h-full object-cover raw-filter">
+                    <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6 pointer-events-none">
+                        <span class="font-mono text-xs text-brand-red">PUEBLA</span>
+                        <h3 class="font-anton text-2xl text-white uppercase">Estética analógica</h3>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer / Contact CTA -->
+    <footer class="bg-brand-black pt-16 pb-8 border-t border-brand-gray">
+        <div class="container mx-auto px-6">
+            <div class="text-center md:text-left mb-16 pb-12 border-b border-brand-gray flex flex-col md:flex-row justify-between items-center gap-8">
+                <div>
+                    <h2 class="font-anton text-4xl md:text-6xl text-brand-white uppercase">¿Hacemos ruido?</h2>
+                    <p class="font-mono text-gray-400 mt-2">CUÉNTENNOS SU HISTORIA. CERO FILTROS.</p>
+                </div>
+                <a href="contacto.html" class="font-anton text-2xl border-b-4 border-brand-red pb-1 text-brand-white hover:text-brand-red hover:border-brand-white transition-colors duration-300 uppercase">
+                    Ir a Contacto &rarr;
+                </a>
+            </div>
+
+            <div class="flex flex-col md:flex-row justify-between items-center text-gray-500 font-mono text-xs">
+                <div class="mb-4 md:mb-0 text-center md:text-left">
+                    <span class="font-anton text-2xl text-brand-white tracking-widest block mb-2">RUBIO FILMS.</span>
+                    <p>© 2026 CINE Y FOTOGRAFÍA DOCUMENTAL.</p>
+                </div>
+                <div class="flex space-x-8">
+                    <a href="#" class="hover:text-brand-red transition-colors">INSTAGRAM</a>
+                    <a href="#" class="hover:text-brand-red transition-colors">VIMEO</a>
+                    <a href="contacto.html" class="hover:text-brand-white transition-colors text-brand-red">CONTACTO</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        document.addEventListener('DOMContentLoaded', () => {
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const navMenu = document.getElementById('nav-menu');
+
+            mobileMenuBtn.addEventListener('click', () => {
+                navMenu.classList.toggle('hidden');
+            });
+        });
+
+        // Filter Functionality
+        function filterPhotos(category) {
+            const items = document.querySelectorAll('.gallery-item');
+            const buttons = document.querySelectorAll('.filter-btn');
+
+            buttons.forEach(btn => {
+                if (btn.getAttribute('data-filter') === category) {
+                    btn.classList.remove('bg-brand-black', 'text-gray-400', 'border-brand-gray');
+                    btn.classList.add('bg-brand-red', 'text-white', 'border-brand-red', 'font-bold');
+                } else {
+                    btn.classList.remove('bg-brand-red', 'text-white', 'border-brand-red', 'font-bold');
+                    btn.classList.add('bg-brand-black', 'text-gray-400', 'border-brand-gray');
+                }
+            });
+
+            items.forEach(item => {
+                if (category === 'all' || item.classList.contains(category)) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</body>
+</html>
