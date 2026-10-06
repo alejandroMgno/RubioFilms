@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth bg-[#0a0a0a]">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EPIC EXTRAS // RUBIO FILMS</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@300;400;500;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'brand-black': '#0a0a0a',
+                        'brand-charcoal': '#161616',
+                        'brand-gray': '#2a2a2a',
+                        'brand-white': '#e5e5e5',
+                        'brand-red': '#9b0000',
+                    },
+                    fontFamily: {
+                        'anton': ['Anton', 'sans-serif'],
+                        'inter': ['Inter', 'sans-serif'],
+                        'mono': ['Space Mono', 'monospace'],
+                    },
+                    animation: {
+                        'noise': 'noise 0.4s infinite',
+                        'marquee': 'marquee 20s linear infinite',
+                        'blink': 'blink 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    },
+                    keyframes: {
+                        noise: {
+                            '0%, 100%': { backgroundPosition: '0 0' },
+                            '10%': { backgroundPosition: '-5% -10%' },
+                            '20%': { backgroundPosition: '-15% 5%' },
+                            '30%': { backgroundPosition: '7% -25%' },
+                            '40%': { backgroundPosition: '20% 25%' },
+                            '50%': { backgroundPosition: '-25% 10%' },
+                            '60%': { backgroundPosition: '15% 5%' },
+                            '70%': { backgroundPosition: '0% 15%' },
+                            '80%': { backgroundPosition: '25% 35%' },
+                            '90%': { backgroundPosition: '-10% 10%' },
+                        },
+                        marquee: {
+                            '0%': { transform: 'translateX(0%)' },
+                            '100%': { transform: 'translateX(-100%)' },
+                        },
+                        blink: {
+                            '0%, 100%': { opacity: 1 },
+                            '50%': { opacity: 0.3 },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            color: #e5e5e5;
+            overflow-x: hidden;
+        }
+        .film-grain {
+            position: fixed;
+            top: -50%; left: -50%; right: -50%; bottom: -50%;
+            width: 200%; height: 200vh;
+            background: transparent url('data:image/svg+xml,%3Csvg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"%3E%3Cfilter id="noiseFilter"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" stitchTiles="stitch"/%3E%3C/filter%3E%3Crect width="100%25" height="100%25" filter="url(%23noiseFilter)" opacity="0.12"/%3E%3C/svg%3E');
+            pointer-events: none;
+            z-index: 9999;
+            animation: noise 0.3s infinite;
+        }
+        .raw-filter {
+            filter: grayscale(100%) contrast(140%) brightness(80%);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .raw-filter:hover, .group:hover .raw-filter {
+            filter: grayscale(0%) contrast(110%) brightness(100%);
+        }
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0a0a0a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #2a2a2a;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #9b0000;
+        }
+    </style>
+</head>
+<body class="font-inter antialiased selection:bg-brand-red selection:text-white">
+
+    <div class="film-grain"></div>
+
+    <!-- Header Navigation -->
+    <header class="fixed w-full top-0 z-50 bg-brand-black/90 backdrop-blur-md border-b border-brand-gray">
+        <div class="container mx-auto px-6 py-5 flex flex-wrap justify-between items-center">
+            <a href="index.html" class="font-anton text-3xl tracking-wider text-brand-white hover:text-brand-red transition-colors z-20">
+                RUBIO FILMS<span class="text-brand-red">.</span>
+            </a>
+            
+            <button id="mobile-menu-btn" class="md:hidden text-brand-white z-20 focus:outline-none">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="square" stroke-linejoin="miter" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+
+            <nav id="nav-menu" class="hidden md:flex flex-col md:flex-row absolute md:relative top-full left-0 w-full md:w-auto bg-brand-black md:bg-transparent border-b md:border-none border-brand-gray md:space-x-8 font-mono text-sm tracking-widest uppercase p-6 md:p-0 z-10">
+                <a href="index.html#enfoque" class="py-3 md:py-0 hover:text-brand-red transition-colors">El Enfoque</a>
+                <a href="index.html#cine" class="py-3 md:py-0 hover:text-brand-red transition-colors">Cine</a>
+                <a href="index.html#historias" class="py-3 md:py-0 hover:text-brand-red transition-colors">Historia</a>
+                <a href="paquetes.html" class="py-3 md:py-0 hover:text-brand-red transition-colors">Paquetes</a>
+                <a href="extras.html" class="py-3 md:py-0 text-brand-red hover:text-brand-white transition-colors">[ Extras ]</a>
+                <a href="contacto.html" class="py-3 md:py-0 hover:text-brand-red transition-colors">Contacto</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="pt-28 min-h-screen pb-32">
+        
+        <!-- Hero Section -->
+        <section class="container mx-auto px-6 py-12 border-b border-brand-gray mb-16">
+            <div class="max-w-4xl">
+                <span class="font-mono text-brand-red text-xs tracking-widest uppercase block mb-3">EXTRAS ÉPICOS PARA UNA WEDDING CON ACTITUD</span>
+                <h1 class="font-anton text-6xl md:text-8xl uppercase text-brand-white mb-6">FUCKING <br> CUSTOM</h1>
+                <p class="font-inter text-gray-300 text-xl leading-relaxed mb-4">
+                     Tu boda no cabe en un paquete. Tu historia tampoco.
+                </p>
+                <p class="font-mono text-xs text-brand-red uppercase tracking-widest">
+                    // SELECCIONA TUS COMPLEMENTOS O DISEÑA TU EXPERIENCIA A MEDIDA
+                </p>
+            </div>
+        </section>
+
+        <!-- Featured Banner: The Beto & Marisol Experience
+        <section class="container mx-auto px-6 mb-20">
+            <div class="bg-gradient-to-r from-brand-charcoal via-brand-gray/40 to-brand-charcoal border-2 border-brand-red p-8 md:p-12 shadow-2xl relative overflow-hidden">
+                <div class="absolute -right-10 -bottom-10 opacity-10 font-anton text-9xl text-brand-red pointer-events-none select-none">
+                    CUSTOM
+                </div>
+                <div class="max-w-3xl">
+                    <span class="font-mono text-brand-red text-xs tracking-widest uppercase block mb-3">EXPERIENCIA EXCLUSIVA // BESPOKE</span>
+                    <h2 class="font-anton text-4xl md:text-6xl text-brand-white uppercase mb-4">The Beto & Marisol Experience</h2>
+                    <p class="font-inter text-gray-300 text-base md:text-lg leading-relaxed mb-6">
+                        For couples who don't want a package. Cobertura total sin límites de tiempo, múltiples cámaras de cine, formato analógico, cobertura de viajes y dirección artística personalizada.
+                    </p>
+                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 border-t border-brand-gray pt-6">
+                        <div class="font-mono">
+                            <span class="text-xs text-gray-400 block uppercase">EXPERIENCIAS DESDE</span>
+                            <span class="text-2xl text-white font-bold">$75,000 MXN</span>
+                        </div>
+                        <a href="contacto.html" onclick="selectExtra('The Beto & Marisol Experience (Custom)')" class="font-mono text-xs bg-brand-red hover:bg-white hover:text-brand-black text-white font-bold px-8 py-4 uppercase tracking-widest transition-all duration-300">
+                            Diseñar Mi Experiencia &rarr;
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section> -->
+
+        <!-- Extras Catalog Grid -->
+        <section class="container mx-auto px-6">
+            <div class="border-b border-brand-gray pb-4 mb-10 flex flex-col sm:flex-row justify-between items-start sm:items-end gap-2">
+                <div>
+                    <h3 class="font-anton text-3xl md:text-4xl uppercase text-brand-white">Módulos & Extras Sueltos</h3>
+                    <p class="font-mono text-xs text-gray-400 mt-1">SELECCIONA 1 O TODOS LOS MÓDULOS QUE DESEES AGREGAR A TU COTIZACIÓN</p>
+                </div>
+                <div class="font-mono text-xs text-brand-red bg-brand-charcoal border border-brand-gray px-3 py-1.5 uppercase tracking-wider">
+                    // MULTI-SELECT ACTIVO
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <!-- Item 1: Entrega en 24 hrs -->
+                <div class="extra-card bg-brand-charcoal border border-brand-gray p-6 flex flex-col justify-between group hover:border-brand-red transition-all">
+                    <div>
+                        <div class="relative w-full aspect-video bg-black overflow-hidden mb-4 border border-brand-gray/50">
+                            <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&q=80&w=800" alt="Entrega en 24 horas" class="w-full h-full object-cover raw-filter group-hover:scale-105 transition-all duration-500">
+                            <span class="absolute top-2 left-2 bg-brand-black px-2 py-0.5 font-mono text-[10px] text-brand-red border border-brand-gray">MÓDULO 01</span>
+                        </div>
+                        <span class="font-mono text-brand-red text-xs tracking-widest uppercase">FLASH DELIVERY // 24 HORAS</span>
+                        <h3 class="font-anton text-2xl text-white uppercase mt-1 mb-3">Entrega en 24 Hrs</h3>
+                        <p class="font-inter text-sm text-gray-400 leading-relaxed mb-6">
+                            Edición prioritaria de emergencia. Recibe un paquete seleccionado de fotografías y un highlight vertical al día siguiente de tu boda para revivirlo de inmediato.
+                        </p>
+                    </div>
+                    <div class="border-t border-brand-gray pt-4 flex justify-between items-center font-mono text-xs">
+                        <span class="text-gray-400">DISPONIBLE</span>
+                        <button onclick="toggleExtra(this, 'Entrega en 24 Hrs')" class="text-brand-red hover:text-white transition-colors uppercase font-bold cursor-pointer py-1">Solicitar &rarr;</button>
+                    </div>
+                </div>
+
+                <!-- Item 2: Drone -->
+                <div class="extra-card bg-brand-charcoal border border-brand-gray p-6 flex flex-col justify-between group hover:border-brand-red transition-all">
+                    <div>
+                        <div class="relative w-full aspect-video bg-black overflow-hidden mb-4 border border-brand-gray/50">
+                            <img src="https://images.unsplash.com/photo-1527977966376-1c8408f9f108?auto=format&fit=crop&q=80&w=800" alt="Tomas de Drone" class="w-full h-full object-cover raw-filter group-hover:scale-105 transition-all duration-500">
+                            <span class="absolute top-2 left-2 bg-brand-black px-2 py-0.5 font-mono text-[10px] text-brand-red border border-brand-gray">MÓDULO 02</span>
+                        </div>
+                        <span class="font-mono text-brand-red text-xs tracking-widest uppercase">AÉREO // 4K FPOV</span>
+                        <h3 class="font-anton text-2xl text-white uppercase mt-1 mb-3">Tomas de Drone</h3>
+                        <p class="font-inter text-sm text-gray-400 leading-relaxed mb-6">
+                            Perspectivas cenitales y paneos cinemáticos de la locación, exteriores y llegada de invitados. Una dimensión épica para abrir el filme documental.
+                        </p>
+                    </div>
+                    <div class="border-t border-brand-gray pt-4 flex justify-between items-center font-mono text-xs">
+                        <span class="text-gray-400">DISPONIBLE</span>
+                        <button onclick="toggleExtra(this, 'Tomas de Drone')" class="text-brand-red hover:text-white transition-colors uppercase font-bold cursor-pointer py-1">Solicitar &rarr;</button>
+                    </div>
+                </div>
+
+                <!-- Item 3: Old School VHS / Hi8 -->
+                <div class="extra-card bg-brand-charcoal border border-brand-gray p-6 flex flex-col justify-between group hover:border-brand-red transition-all">
+                    <div>
+                        <div class="relative w-full aspect-video bg-black overflow-hidden mb-4 border border-brand-gray/50">
+                            <img src="https://images.unsplash.com/photo-1512758017271-d7b84c2113f1?auto=format&fit=crop&q=80&w=800" alt="Video Old School VHS" class="w-full h-full object-cover raw-filter group-hover:scale-105 transition-all duration-500">
+                            <span class="absolute top-2 left-2 bg-brand-black px-2 py-0.5 font-mono text-[10px] text-brand-red border border-brand-gray">MÓDULO 03</span>
+                        </div>
+                        <span class="font-mono text-brand-red text-xs tracking-widest uppercase">ANALÓGICO // 90S Vibe</span>
+                        <h3 class="font-anton text-2xl text-white uppercase mt-1 mb-3">Videos Old School (Hi8 / VHS)</h3>
+                        <p class="font-inter text-sm text-gray-400 leading-relaxed mb-6">
+                            Grabado con cámaras de cinta magnética reales de los años 90s. Ruido orgánico, fugas de luz, color texturizado y la nostalgia pura de formato camcorder casero.
+                        </p>
+                    </div>
+                    <div class="border-t border-brand-gray pt-4 flex justify-between items-center font-mono text-xs">
+                        <span class="text-gray-400">DISPONIBLE</span>
+                        <button onclick="toggleExtra(this, 'Videos Old School (Hi8 / VHS)')" class="text-brand-red hover:text-white transition-colors uppercase font-bold cursor-pointer py-1">Solicitar &rarr;</button>
+                    </div>
+                </div>
+
+                <!-- Item 4: Teaser 48h -->
+                <div class="extra-card bg-brand-charcoal border border-brand-gray p-6 flex flex-col justify-between group hover:border-brand-red transition-all">
+                    <div>
+                        <div class="relative w-full aspect-video bg-black overflow-hidden mb-4 border border-brand-gray/50">
+                            <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&q=80&w=800" alt="Video Teaser 48 horas" class="w-full h-full object-cover raw-filter group-hover:scale-105 transition-all duration-500">
+                            <span class="absolute top-2 left-2 bg-brand-black px-2 py-0.5 font-mono text-[10px] text-brand-red border border-brand-gray">MÓDULO 04</span>
+                        </div>
+                        <span class="font-mono text-brand-red text-xs tracking-widest uppercase">ENTREGA EXPRESS // 48H</span>
+                        <h3 class="font-anton text-2xl text-white uppercase mt-1 mb-3">Video Teaser (Redes)</h3>
+                        <p class="font-inter text-sm text-gray-400 leading-relaxed mb-6">
+                            Un corte de 60 segundos con la energía más alta del evento, editado y entregado en un máximo de 48 horas posteriores a la boda para que lo compartas de inmediato.
+                        </p>
+                    </div>
+                    <div class="border-t border-brand-gray pt-4 flex justify-between items-center font-mono text-xs">
+                        <span class="text-gray-400">DISPONIBLE</span>
+                        <button onclick="toggleExtra(this, 'Video Teaser (Redes)')" class="text-brand-red hover:text-white transition-colors uppercase font-bold cursor-pointer py-1">Solicitar &rarr;</button>
+                    </div>
+                </div>
+
+                <!-- Item 5: Mini Clip Vertical -->
+                <div class="extra-card bg-brand-charcoal border border-brand-gray p-6 flex flex-col justify-between group hover:border-brand-red transition-all">
+                    <div>
+                        <div class="relative w-full aspect-video bg-black overflow-hidden mb-4 border border-brand-gray/50">
+                            <img src="https://images.unsplash.com/photo-1543269865-cbf427effbad?auto=format&fit=crop&q=80&w=800" alt="Mini Clip Vertical" class="w-full h-full object-cover raw-filter group-hover:scale-105 transition-all duration-500">
+                            <span class="absolute top-2 left-2 bg-brand-black px-2 py-0.5 font-mono text-[10px] text-brand-red border border-brand-gray">MÓDULO 05</span>
+                        </div>
+                        <span class="font-mono text-brand-red text-xs tracking-widest uppercase">VERTICAL // REELS & TIKTOK</span>
+                        <h3 class="font-anton text-2xl text-white uppercase mt-1 mb-3">Mini Clip Documental (9:16)</h3>
+                        <p class="font-inter text-sm text-gray-400 leading-relaxed mb-6">
+                            Resumen vertical optimizado en 4K para Instagram Reels y TikTok, con diseño sonoro dedicado y ritmo acelerado.
+                        </p>
+                    </div>
+                    <div class="border-t border-brand-gray pt-4 flex justify-between items-center font-mono text-xs">
+                        <span class="text-gray-400">DISPONIBLE</span>
+                        <button onclick="toggleExtra(this, 'Mini Clip Documental (9:16)')" class="text-brand-red hover:text-white transition-colors uppercase font-bold cursor-pointer py-1">Solicitar &rarr;</button>
+                    </div>
+                </div>
+
+                <!-- Item 6: Hora Extra -->
+                <div class="extra-card bg-brand-charcoal border border-brand-gray p-6 flex flex-col justify-between group hover:border-brand-red transition-all">
+                    <div>
+                        <div class="relative w-full aspect-video bg-black overflow-hidden mb-4 border border-brand-gray/50">
+                            <img src="https://images.unsplash.com/photo-1520854221256-17451cc331bf?auto=format&fit=crop&q=80&w=800" alt="Hora extra de cobertura" class="w-full h-full object-cover raw-filter group-hover:scale-105 transition-all duration-500">
+                            <span class="absolute top-2 left-2 bg-brand-black px-2 py-0.5 font-mono text-[10px] text-brand-red border border-brand-gray">MÓDULO 06</span>
+                        </div>
+                        <span class="font-mono text-brand-red text-xs tracking-widest uppercase">TIEMPO EXPANDIDO // FIESTA</span>
+                        <h3 class="font-anton text-2xl text-white uppercase mt-1 mb-3">Hora Extra de Cobertura</h3>
+                        <p class="font-inter text-sm text-gray-400 leading-relaxed mb-6">
+                            Porque las mejores fiestas no acaban a tiempo. Extiende la presencia de cámaras y sonido directo para capturar el clímax absoluto de la madrugada.
+                        </p>
+                    </div>
+                    <div class="border-t border-brand-gray pt-4 flex justify-between items-center font-mono text-xs">
+                        <span class="text-gray-400">DISPONIBLE</span>
+                        <button onclick="toggleExtra(this, 'Hora Extra de Cobertura')" class="text-brand-red hover:text-white transition-colors uppercase font-bold cursor-pointer py-1">Solicitar &rarr;</button>
+                    </div>
+                </div>
+
+                <!-- Item 7: Sesión Pre/Post Boda -->
+                <div class="extra-card bg-brand-charcoal border border-brand-gray p-6 flex flex-col justify-between group hover:border-brand-red transition-all">
+                    <div>
+                        <div class="relative w-full aspect-video bg-black overflow-hidden mb-4 border border-brand-gray/50">
+                            <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=800" alt="Sesión Pre-Boda o Trash the Dress" class="w-full h-full object-cover raw-filter group-hover:scale-105 transition-all duration-500">
+                            <span class="absolute top-2 left-2 bg-brand-black px-2 py-0.5 font-mono text-[10px] text-brand-red border border-brand-gray">MÓDULO 07</span>
+                        </div>
+                        <span class="font-mono text-brand-red text-xs tracking-widest uppercase">EDITORIAL // EXTERIORES</span>
+                        <h3 class="font-anton text-2xl text-white uppercase mt-1 mb-3">Sesión Pre o Post Boda</h3>
+                        <p class="font-inter text-sm text-gray-400 leading-relaxed mb-6">
+                            Una sesión documental en locación libre (playa, montaña, ciudad o estudio) sin poses forzadas, capturando su complicidad en un ambiente relajado.
+                        </p>
+                    </div>
+                    <div class="border-t border-brand-gray pt-4 flex justify-between items-center font-mono text-xs">
+                        <span class="text-gray-400">DISPONIBLE</span>
+                        <button onclick="toggleExtra(this, 'Sesión Pre o Post Boda')" class="text-brand-red hover:text-white transition-colors uppercase font-bold cursor-pointer py-1">Solicitar &rarr;</button>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Floating Multi-Select Action Bar -->
+    <div id="floating-bar" class="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 bg-brand-charcoal border-2 border-brand-red px-6 py-4 shadow-2xl flex flex-col sm:flex-row items-center gap-4 transition-all duration-300 translate-y-32 opacity-0 pointer-events-none max-w-xl w-[90%]">
+        <div class="font-mono text-xs text-brand-white flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-brand-red animate-pulse"></span>
+            <span id="selected-count" class="font-bold uppercase tracking-wider">0 módulos seleccionados</span>
+        </div>
+        <div class="flex items-center gap-3 w-full sm:w-auto justify-end">
+            <button onclick="clearAllExtras()" class="font-mono text-[10px] text-gray-400 hover:text-white uppercase px-3 py-2 border border-brand-gray">Limpiar</button>
+            <button onclick="proceedToContact()" class="font-mono text-xs bg-brand-red hover:bg-white hover:text-brand-black text-white font-bold px-6 py-3 uppercase tracking-widest transition-all">
+                Cotizar con Extras &rarr;
+            </button>
+        </div>
+    </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-brand-black pt-16 pb-8 border-t border-brand-gray">
+        <div class="container mx-auto px-6">
+            <div class="text-center md:text-left mb-16 pb-12 border-b border-brand-gray flex flex-col md:flex-row justify-between items-center gap-8">
+                <div>
+                    <h2 class="font-anton text-4xl md:text-6xl text-brand-white uppercase">¿Hacemos ruido?</h2>
+                    <p class="font-mono text-gray-400 mt-2">CUÉNTENNOS SU HISTORIA. CERO FILTROS.</p>
+                </div>
+                <a href="contacto.html" class="font-anton text-2xl border-b-4 border-brand-red pb-1 text-brand-white hover:text-brand-red hover:border-brand-white transition-colors duration-300 uppercase">
+                    Ir a Contacto &rarr;
+                </a>
+            </div>
+
+            <div class="flex flex-col md:flex-row justify-between items-center text-gray-500 font-mono text-xs">
+                <div class="mb-4 md:mb-0 text-center md:text-left">
+                    <span class="font-anton text-2xl text-brand-white tracking-widest block mb-2">RUBIO FILMS.</span>
+                    <p>© 2026 CINE Y FOTOGRAFÍA DOCUMENTAL.</p>
+                </div>
+                <div class="flex space-x-8">
+                    <a href="#" class="hover:text-brand-red transition-colors">INSTAGRAM</a>
+                    <a href="#" class="hover:text-brand-red transition-colors">VIMEO</a>
+                    <a href="extras.html" class="hover:text-brand-white transition-colors text-brand-red">EXTRAS</a>
+                    <a href="contacto.html" class="hover:text-brand-white transition-colors">CONTACTO</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        let selectedExtras = [];
+
+        function toggleExtra(btn, extraName) {
+            const card = btn.closest('.extra-card');
+            const index = selectedExtras.indexOf(extraName);
+            
+            if (index > -1) {
+                // Remove
+                selectedExtras.splice(index, 1);
+                btn.textContent = 'Solicitar ➔';
+                btn.classList.remove('text-white', 'bg-brand-red', 'px-3', 'py-1', 'font-bold');
+                btn.classList.add('text-brand-red');
+                card.classList.remove('border-brand-red', 'ring-1', 'ring-brand-red', 'bg-brand-charcoal/90');
+                card.classList.add('border-brand-gray', 'bg-brand-charcoal');
+            } else {
+                // Add
+                selectedExtras.push(extraName);
+                btn.textContent = '[ ✓ Seleccionado ]';
+                btn.classList.remove('text-brand-red');
+                btn.classList.add('text-white', 'bg-brand-red', 'px-3', 'py-1', 'font-bold');
+                card.classList.remove('border-brand-gray');
+                card.classList.add('border-brand-red', 'ring-1', 'ring-brand-red', 'bg-brand-charcoal/90');
+            }
+            
+            updateFloatingBar();
+        }
+
+        function updateFloatingBar() {
+            const bar = document.getElementById('floating-bar');
+            const countText = document.getElementById('selected-count');
+            
+            if (selectedExtras.length > 0) {
+                bar.classList.remove('translate-y-32', 'opacity-0', 'pointer-events-none');
+                bar.classList.add('translate-y-0', 'opacity-100', 'pointer-events-auto');
+                countText.textContent = `${selectedExtras.length} ${selectedExtras.length === 1 ? 'módulo seleccionado' : 'módulos seleccionados'}`;
+            } else {
+                bar.classList.add('translate-y-32', 'opacity-0', 'pointer-events-none');
+                bar.classList.remove('translate-y-0', 'opacity-100', 'pointer-events-auto');
+            }
+        }
+
+        function clearAllExtras() {
+            selectedExtras = [];
+            document.querySelectorAll('.extra-card').forEach(card => {
+                card.classList.remove('border-brand-red', 'ring-1', 'ring-brand-red', 'bg-brand-charcoal/90');
+                card.classList.add('border-brand-gray', 'bg-brand-charcoal');
+                const btn = card.querySelector('button');
+                btn.textContent = 'Solicitar ➔';
+                btn.classList.remove('text-white', 'bg-brand-red', 'px-3', 'py-1', 'font-bold');
+                btn.classList.add('text-brand-red');
+            });
+            updateFloatingBar();
+        }
+
+        function proceedToContact() {
+            if (selectedExtras.length === 0) return;
+            localStorage.setItem('selectedExtras', JSON.stringify(selectedExtras));
+            window.location.href = 'contacto.html';
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const navMenu = document.getElementById('nav-menu');
+
+            mobileMenuBtn.addEventListener('click', () => {
+                navMenu.classList.toggle('hidden');
+            });
+        });
+    </script>
+    <!-- Floating WhatsApp Widget -->
+    <a href="https://wa.me/525500000000?text=Hola%20Rubio%20Films,%20me%20gustaría%20información%20sobre%20extras%20y%20complementos" target="_blank" class="fixed bottom-6 right-6 z-50 bg-[#25D366] hover:bg-[#20ba5a] text-white p-4 rounded-full shadow-2xl flex items-center justify-center transition-all duration-300 hover:scale-110 group" aria-label="WhatsApp">
+        <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.124-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+        <span class="max-w-0 overflow-hidden whitespace-nowrap group-hover:max-w-xs transition-all duration-500 ease-in-out font-mono text-xs font-bold pl-0 group-hover:pl-2">WhatsApp</span>
+    </a>
+</body>
+</html>

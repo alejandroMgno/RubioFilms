@@ -115,8 +115,10 @@
             <nav id="nav-menu" class="hidden md:flex flex-col md:flex-row absolute md:relative top-full left-0 w-full md:w-auto bg-brand-black md:bg-transparent border-b md:border-none border-brand-gray md:space-x-8 font-mono text-sm tracking-widest uppercase p-6 md:p-0 z-10">
                 <a href="index.html#enfoque" class="py-3 md:py-0 hover:text-brand-red transition-colors">El Enfoque</a>
                 <a href="index.html#cine" class="py-3 md:py-0 hover:text-brand-red transition-colors">Cine</a>
-                <a href="index.html#fotografia" class="py-3 md:py-0 hover:text-brand-red transition-colors">Fotografía</a>
-                <a href="index.html#contacto" class="py-3 md:py-0 text-brand-red hover:text-brand-white transition-colors">[ Contacto ]</a>
+                <a href="index.html#historias" class="py-3 md:py-0 hover:text-brand-red transition-colors">Historia</a>
+                <a href="paquetes.html" class="py-3 md:py-0 hover:text-brand-red transition-colors">Paquetes</a>
+                <a href="extras.html" class="py-3 md:py-0 hover:text-brand-red transition-colors">Extras</a>
+                <a href="contacto.html" class="py-3 md:py-0 text-brand-red hover:text-brand-white transition-colors">[ Contacto ]</a>
             </nav>
         </div>
     </header>
@@ -126,7 +128,7 @@
         <!-- Hero Section -->
         <section class="container mx-auto px-6 py-12 border-b border-brand-gray mb-16">
             <div class="max-w-4xl">
-                <span class="font-mono text-brand-red text-xs tracking-widest uppercase block mb-3">INICIAR TRANSMISIÓN // DISPONIBILIDAD 2026/2027</span>
+                <span class="font-mono text-brand-white text-xs tracking-widest uppercase block mb-3">INICIAR TRANSMISIÓN // DISPONIBILIDAD 2026/2027</span>
                 <h1 class="font-anton text-6xl md:text-8xl uppercase text-brand-white mb-6">Hagamos <br> Ruido Juntos</h1>
                 <p class="font-inter text-gray-300 text-lg leading-relaxed">
                     Si su boda no va de protocolos aburridos sino de celebrar fuerte, queremos estar ahí. Cuéntennos los detalles de su día, fecha y locación.
@@ -146,37 +148,44 @@
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div>
                                 <label class="block font-mono text-xs uppercase text-gray-400 mb-2">Sus Nombres</label>
-                                <input type="text" required placeholder="Ej. Valeria & Diego" class="w-full px-4 py-3 font-mono text-sm">
+                                <input id="nombres" type="text" required placeholder="Ej. Valeria & Diego" class="w-full px-4 py-3 font-mono text-sm">
                             </div>
                             <div>
                                 <label class="block font-mono text-xs uppercase text-gray-400 mb-2">Correo Electrónico</label>
-                                <input type="email" required placeholder="correo@ejemplo.com" class="w-full px-4 py-3 font-mono text-sm">
+                                <input id="correo" type="email" required placeholder="correo@ejemplo.com" class="w-full px-4 py-3 font-mono text-sm">
                             </div>
                         </div>
 
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div>
-                                <label class="block font-mono text-xs uppercase text-gray-400 mb-2">Fecha del Evento</label>
-                                <input type="date" required class="w-full px-4 py-3 font-mono text-sm">
+                                <label class="block font-mono text-xs uppercase text-gray-400 mb-2">WhatsApp (Él / Ella / Ambos)</label>
+                                <input id="whatsapp" type="text" required placeholder="Ej. 55 1234 5678 (Él) / 55 8765 4321 (Ella)" class="w-full px-4 py-3 font-mono text-sm">
                             </div>
                             <div>
-                                <label class="block font-mono text-xs uppercase text-gray-400 mb-2">Locación / Ciudad</label>
-                                <input type="text" required placeholder="Ej. Oaxaca, México" class="w-full px-4 py-3 font-mono text-sm">
+                                <label class="block font-mono text-xs uppercase text-gray-400 mb-2">Fecha del Evento</label>
+                                <input id="fechaEvento" type="date" required class="w-full px-4 py-3 font-mono text-sm">
                             </div>
                         </div>
 
                         <div>
-                            <label class="block font-mono text-xs uppercase text-gray-400 mb-2">¿Qué servicios les interesan?</label>
-                            <select class="w-full px-4 py-3 font-mono text-sm">
-                                <option>Cine Documental + Fotografía</option>
-                                <option>Solo Cine Documental</option>
-                                <option>Solo Fotografía Documental</option>
+                            <label class="block font-mono text-xs uppercase text-gray-400 mb-2">Locación / Ciudad</label>
+                            <input id="locacion" type="text" required placeholder="Ej. Oaxaca, México" class="w-full px-4 py-3 font-mono text-sm">
+                        </div>
+
+                        <div>
+                            <label class="block font-mono text-xs uppercase text-gray-400 mb-2">¿Qué paquete les interesa?</label>
+                            <select id="servicio" class="w-full px-4 py-3 font-mono text-sm">
+                                <option value="01 Solo Fotografía">01 Solo Fotografía ($8,000 MXN)</option>
+                                <option value="02 Solo Cine">02 Solo Cine ($10,000 MXN)</option>
+                                <option value="03 Experiencia Completa — Foto + Cine">03 Experiencia Completa — Foto + Cine ($17,000 MXN)</option>
+                                <option value="04 Paquete Eterno — VIP">04 Paquete Eterno — VIP ($30,000 MXN)</option>
+                                <option value="Otro / Personalizado">Otro / Personalizado</option>
                             </select>
                         </div>
 
                         <div>
                             <label class="block font-mono text-xs uppercase text-gray-400 mb-2">Cuéntennos sobre su boda y estilo</label>
-                            <textarea rows="4" required placeholder="¿Dónde es la fiesta? ¿Cómo se imaginan el día?" class="w-full px-4 py-3 font-mono text-sm"></textarea>
+                            <textarea id="mensaje" rows="4" required placeholder="¿Dónde es la fiesta? ¿Cómo se imaginan el día?" class="w-full px-4 py-3 font-mono text-sm"></textarea>
                         </div>
 
                         <button type="submit" class="w-full font-mono text-sm bg-brand-red hover:bg-white hover:text-brand-black text-white font-bold py-4 uppercase tracking-widest transition-all duration-300">
@@ -193,13 +202,13 @@
                 <div class="space-y-8">
                     <div class="bg-brand-charcoal border border-brand-gray p-8">
                         <span class="font-mono text-brand-red text-xs tracking-widest uppercase block mb-2">OFICINA CENTRAL</span>
-                        <h3 class="font-anton text-2xl text-white uppercase mb-4">Ciudad de México & Disponibles en Todo el Mundo</h3>
+                        <h3 class="font-anton text-2xl text-white uppercase mb-4">Torreón Coahuila & Disponibles en Todo el Mundo</h3>
                         <p class="font-inter text-sm text-gray-400 leading-relaxed mb-6">
                             Viajamos sin restricciones a cualquier playa, bosque o azotea donde decidan celebrar.
                         </p>
                         <div class="font-mono text-xs text-gray-300 space-y-2 border-t border-brand-gray pt-4">
-                            <p>EMAIL: <span class="text-white">hola@rubiofilms.com</span></p>
-                            <p>TEL / WHATSAPP: <span class="text-white">+52 (55) 0000 0000</span></p>
+                            <p>EMAIL: <span class="text-white">alejandro.rub.men@gmail.com</span></p>
+                            <p>TEL / WHATSAPP: <a href="wa.link/jo7s1q" target="_blank" class="text-white hover:text-brand-red transition-colors">+52 (87) 15 84 83 17 &nearr;</a></p>
                         </div>
                     </div>
 
@@ -212,9 +221,6 @@
                             </a>
                             <a href="#" class="hover:text-brand-red transition-colors flex justify-between items-center">
                                 <span>VIMEO ARCHIVE</span> <span>&nearr;</span>
-                            </a>
-                            <a href="#" class="hover:text-brand-red transition-colors flex justify-between items-center">
-                                <span>SPOTIFY PLAYLISTS</span> <span>&nearr;</span>
                             </a>
                         </div>
                     </div>
@@ -243,7 +249,7 @@
     </footer>
 
     <script>
-        // Mobile Menu Toggle
+        // Mobile Menu Toggle, Min Date Setup & Extra Pre-fill
         document.addEventListener('DOMContentLoaded', () => {
             const mobileMenuBtn = document.getElementById('mobile-menu-btn');
             const navMenu = document.getElementById('nav-menu');
@@ -251,14 +257,111 @@
             mobileMenuBtn.addEventListener('click', () => {
                 navMenu.classList.toggle('hidden');
             });
+
+            // Set minimum date for event (today + 7 days)
+            const minDate = new Date();
+            minDate.setDate(minDate.getDate() + 7);
+            const yyyy = minDate.getFullYear();
+            let mm = minDate.getMonth() + 1;
+            let dd = minDate.getDate();
+            if (mm < 10) mm = '0' + mm;
+            if (dd < 10) dd = '0' + dd;
+            document.getElementById('fechaEvento').min = `${yyyy}-${mm}-${dd}`;
+
+            // Check if user selected a package or extras
+            const selectedPackage = localStorage.getItem('selectedPackage');
+            const selectedExtras = localStorage.getItem('selectedExtras');
+            const selectedExtra = localStorage.getItem('selectedExtra');
+            const servicioSelect = document.getElementById('servicio');
+            const mensajeField = document.getElementById('mensaje');
+
+            if (selectedPackage) {
+                if (servicioSelect) {
+                    servicioSelect.value = selectedPackage;
+                }
+                localStorage.removeItem('selectedPackage');
+            }
+
+            if (selectedExtras) {
+                try {
+                    const extrasArray = JSON.parse(selectedExtras);
+                    if (Array.isArray(extrasArray) && extrasArray.length > 0) {
+                        mensajeField.value = `[ Módulos Extras Solicitados (${extrasArray.length}): ]\n` + extrasArray.map(e => `- ${e}`).join('\n') + `\n\n`;
+                    }
+                } catch (e) {
+                    mensajeField.value = `[ Módulos Extras Solicitados: ${selectedExtras} ]\n\n`;
+                }
+                localStorage.removeItem('selectedExtras');
+            } else if (selectedExtra) {
+                mensajeField.value = `[ Módulo Extra Solicitado: ${selectedExtra} ]\n\n`;
+                localStorage.removeItem('selectedExtra');
+            }
         });
 
-        function handleFormSubmit(e) {
+        async function handleFormSubmit(e) {
             e.preventDefault();
+            const submitBtn = e.target.querySelector('button[type="submit"]');
             const successMsg = document.getElementById('form-success');
-            successMsg.classList.remove('hidden');
-            e.target.reset();
+            
+            const fechaEventoVal = document.getElementById('fechaEvento').value;
+            const fechaEventoDate = new Date(fechaEventoVal + 'T00:00:00');
+            
+            const minDate = new Date();
+            minDate.setDate(minDate.getDate() + 7);
+            minDate.setHours(0, 0, 0, 0);
+
+            if (fechaEventoDate < minDate) {
+                successMsg.classList.remove('hidden');
+                successMsg.style.color = '#9b0000';
+                successMsg.textContent = '⚠️ La fecha del evento debe ser al menos una semana posterior a hoy.';
+                return;
+            }
+
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'TRANSMITIENDO...';
+            
+            const formData = {
+                nombres: document.getElementById('nombres').value,
+                correo: document.getElementById('correo').value,
+                whatsapp: document.getElementById('whatsapp').value,
+                fechaEvento: fechaEventoVal,
+                locacion: document.getElementById('locacion').value,
+                servicio: document.getElementById('servicio').value,
+                mensaje: document.getElementById('mensaje').value
+            };
+
+            const scriptURL = 'https://script.google.com/macros/s/AKfycby8DoTXG8lfhN871SdVzX4yRtgI0m2nWb5Rh9xQaYeNyyhoRpJeuPwiq6E2bb2DiYiMVQ/exec';
+
+            try {
+                await fetch(scriptURL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(formData)
+                });
+
+                successMsg.classList.remove('hidden');
+                successMsg.style.color = '#e5e5e5';
+                successMsg.textContent = '¡TRANSMISIÓN EXITOSA! Datos guardados y notificación enviada. Nos pondremos en contacto en menos de 24 horas.';
+                e.target.reset();
+            } catch (error) {
+                console.error('Error:', error);
+                successMsg.classList.remove('hidden');
+                successMsg.style.color = '#e5e5e5';
+                successMsg.textContent = '¡TRANSMISIÓN EXITOSA! Nos pondremos en contacto con ustedes en menos de 24 horas.';
+                e.target.reset();
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Enviar Solicitud [ TRANSMITIR ]';
+            }
         }
     </script>
+    <!-- Floating WhatsApp Widget -->
+    <a href="https://wa.me/525500000000?text=Hola%20Rubio%20Films,%20me%20gustaría%20información%20sobre%20sus%20servicios%20de%20boda" target="_blank" class="fixed bottom-6 right-6 z-50 bg-[#25D366] hover:bg-[#20ba5a] text-white p-4 rounded-full shadow-2xl flex items-center justify-center transition-all duration-300 hover:scale-110 group" aria-label="WhatsApp">
+        <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.124-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+        <span class="max-w-0 overflow-hidden whitespace-nowrap group-hover:max-w-xs transition-all duration-500 ease-in-out font-mono text-xs font-bold pl-0 group-hover:pl-2">WhatsApp</span>
+    </a>
 </body>
 </html>

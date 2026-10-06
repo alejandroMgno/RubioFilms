@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth bg-[#0a0a0a]">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PAQUETES DE BODA | RUBIO FILMS</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@300;400;500;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'brand-black': '#0a0a0a',
+                        'brand-charcoal': '#161616',
+                        'brand-gray': '#2a2a2a',
+                        'brand-white': '#e5e5e5',
+                        'brand-red': '#9b0000',
+                    },
+                    fontFamily: {
+                        'anton': ['Anton', 'sans-serif'],
+                        'inter': ['Inter', 'sans-serif'],
+                        'mono': ['Space Mono', 'monospace'],
+                    },
+                    animation: {
+                        'noise': 'noise 0.4s infinite',
+                        'marquee': 'marquee 20s linear infinite',
+                        'blink': 'blink 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    },
+                    keyframes: {
+                        noise: {
+                            '0%, 100%': { backgroundPosition: '0 0' },
+                            '10%': { backgroundPosition: '-5% -10%' },
+                            '20%': { backgroundPosition: '-15% 5%' },
+                            '30%': { backgroundPosition: '7% -25%' },
+                            '40%': { backgroundPosition: '20% 25%' },
+                            '50%': { backgroundPosition: '-25% 10%' },
+                            '60%': { backgroundPosition: '15% 5%' },
+                            '70%': { backgroundPosition: '0% 15%' },
+                            '80%': { backgroundPosition: '25% 35%' },
+                            '90%': { backgroundPosition: '-10% 10%' },
+                        },
+                        marquee: {
+                            '0%': { transform: 'translateX(0%)' },
+                            '100%': { transform: 'translateX(-100%)' },
+                        },
+                        blink: {
+                            '0%, 100%': { opacity: 1 },
+                            '50%': { opacity: 0.3 },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            color: #e5e5e5;
+            overflow-x: hidden;
+        }
+        .film-grain {
+            position: fixed;
+            top: -50%; left: -50%; right: -50%; bottom: -50%;
+            width: 200%; height: 200vh;
+            background: transparent url('data:image/svg+xml,%3Csvg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"%3E%3Cfilter id="noiseFilter"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" stitchTiles="stitch"/%3E%3C/filter%3E%3Crect width="100%25" height="100%25" filter="url(%23noiseFilter)" opacity="0.12"/%3E%3C/svg%3E');
+            pointer-events: none;
+            z-index: 9999;
+            animation: noise 0.3s infinite;
+        }
+        .raw-filter {
+            filter: grayscale(100%) contrast(140%) brightness(80%);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .raw-filter:hover, .group:hover .raw-filter {
+            filter: grayscale(0%) contrast(110%) brightness(100%);
+        }
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0a0a0a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #2a2a2a;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #9b0000;
+        }
+    </style>
+</head>
+<body class="font-inter antialiased selection:bg-brand-red selection:text-white">
+
+    <div class="film-grain"></div>
+
+    <!-- Header Navigation -->
+    <header class="fixed w-full top-0 z-50 bg-brand-black/90 backdrop-blur-md border-b border-brand-gray">
+        <div class="container mx-auto px-6 py-5 flex flex-wrap justify-between items-center">
+            <a href="index.html" class="font-anton text-3xl tracking-wider text-brand-white hover:text-brand-red transition-colors z-20">
+                RUBIO FILMS<span class="text-brand-red">.</span>
+            </a>
+            
+            <button id="mobile-menu-btn" class="md:hidden text-brand-white z-20 focus:outline-none">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="square" stroke-linejoin="miter" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+
+            <nav id="nav-menu" class="hidden md:flex flex-col md:flex-row absolute md:relative top-full left-0 w-full md:w-auto bg-brand-black md:bg-transparent border-b md:border-none border-brand-gray md:space-x-8 font-mono text-sm tracking-widest uppercase p-6 md:p-0 z-10">
+                <a href="index.html#enfoque" class="py-3 md:py-0 hover:text-brand-red transition-colors">El Enfoque</a>
+                <a href="index.html#cine" class="py-3 md:py-0 hover:text-brand-red transition-colors">Cine</a>
+                <a href="index.html#historias" class="py-3 md:py-0 hover:text-brand-red transition-colors">Historia</a>
+                <a href="paquetes.html" class="py-3 md:py-0 text-brand-red hover:text-brand-white transition-colors">[ Paquetes ]</a>
+                <a href="extras.html" class="py-3 md:py-0 hover:text-brand-red transition-colors">Extras</a>
+                <a href="contacto.html" class="py-3 md:py-0 hover:text-brand-red transition-colors">Contacto</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="pt-28 min-h-screen pb-20">
+        
+        <!-- Hero Section -->
+        <section class="container mx-auto px-6 py-12 border-b border-brand-gray mb-16">
+            <div class="max-w-4xl">
+                <span class="font-mono text-brand-red text-xs tracking-widest uppercase block mb-3">COBERTURAS PRINCIPALES // CERO MANUAL</span>
+                <h1 class="font-anton text-6xl md:text-8xl uppercase text-brand-white mb-6">Nuestros <br> Paquetes</h1>
+                <p class="font-inter text-gray-300 text-lg leading-relaxed">
+                    Cada boda es un cortometraje irrepetible. Sin guiones falsos, sin poses interminables. Elige el nivel de cobertura perfecto para su celebración y personalízalo con nuestros módulos extra.
+                </p>
+            </div>
+        </section>
+
+        <!-- Paquetes Grid -->
+        <section class="container mx-auto px-6">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                
+                <!-- Package 1: 01 Solo Fotografía -->
+                <div class="bg-brand-charcoal border border-brand-gray p-8 md:p-12 shadow-2xl flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-start mb-2">
+                            <span class="font-mono text-brand-red text-xs tracking-widest uppercase">MÓDULO 01 // FOTO EDITORIAL</span>
+                            <span class="font-anton text-3xl text-white">$8,000 <span class="text-xs font-mono text-gray-400">MXN</span></span>
+                        </div>
+                        <h3 class="font-anton text-4xl uppercase text-brand-white mb-4">01 Solo Fotografía</h3>
+                        <p class="font-inter text-gray-300 text-sm leading-relaxed mb-8">
+                            Mirada fotográfica sincera, contrastada y cruda. Capturamos la atmósfera real de la celebración sin interrumpir ni forzar momentos.
+                        </p>
+                        
+                        <ul class="space-y-3 font-mono text-xs text-gray-300 mb-8 border-t border-brand-gray py-6">
+                            <li class="flex items-center gap-3">✓ Cobertura desde arreglos hasta la fiesta</li>
+                            <li class="flex items-center gap-3">✓ Revelado y edición de color estilo cinematográfico</li>
+                            <li class="flex items-center gap-3">✓ Mínimo de 700 fotografías en alta resolución</li>
+                            <li class="flex items-center gap-3">✓ Galería web privada con descarga ilimitada</li>
+                            <li class="flex items-center gap-3">✓ Sin límite de invitados ni restricciones de tiempo base</li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <button onclick="selectPackage('01 Solo Fotografía')" class="w-full font-mono text-sm bg-brand-gray hover:bg-brand-red hover:text-white text-white font-bold py-4 uppercase tracking-widest transition-all duration-300 cursor-pointer">
+                            Seleccionar Paquete [ COTIZAR ]
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Package 2: 02 Solo Cine -->
+                <div class="bg-brand-charcoal border border-brand-gray p-8 md:p-12 shadow-2xl flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-start mb-2">
+                            <span class="font-mono text-brand-red text-xs tracking-widest uppercase">MÓDULO 02 // CINE 4K</span>
+                            <span class="font-anton text-3xl text-white">$10,000 <span class="text-xs font-mono text-gray-400">MXN</span></span>
+                        </div>
+                        <h3 class="font-anton text-4xl uppercase text-brand-white mb-4">02 Solo Cine</h3>
+                        <p class="font-inter text-gray-300 text-sm leading-relaxed mb-8">
+                            Enfocado 100% en el lenguaje audiovisual, el ritmo y el sonido ambiental para construir una pieza de cine irrepetible de su historia.
+                        </p>
+                        
+                        <ul class="space-y-3 font-mono text-xs text-gray-300 mb-8 border-t border-brand-gray py-6">
+                            <li class="flex items-center gap-3">✓ Cobertura completa de preparativos a fiesta</li>
+                            <li class="flex items-center gap-3">✓ Filme documental principal (15 a 20 minutos)</li>
+                            <li class="flex items-center gap-3">✓ Teaser express para redes sociales</li>
+                            <li class="flex items-center gap-3">✓ Sonido directo profesional en alta fidelidad</li>
+                            <li class="flex items-center gap-3">✓ Entrega en plataforma digital privada 4K</li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <button onclick="selectPackage('02 Solo Cine')" class="w-full font-mono text-sm bg-brand-gray hover:bg-brand-red hover:text-white text-white font-bold py-4 uppercase tracking-widest transition-all duration-300 cursor-pointer">
+                            Seleccionar Paquete [ COTIZAR ]
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Package 3: 03 Experiencia Completa — Foto + Cine -->
+                <div class="bg-brand-charcoal border-2 border-brand-red p-8 md:p-12 shadow-2xl flex flex-col justify-between relative">
+                    <span class="absolute top-4 right-4 bg-brand-red text-white font-mono text-[10px] px-3 py-1 uppercase tracking-widest font-bold">MÁS SOLICITADO</span>
+                    <div>
+                        <div class="flex justify-between items-start mb-2">
+                            <span class="font-mono text-brand-red text-xs tracking-widest uppercase">MÓDULO 03 // EXPERIENCIA COMPLETA</span>
+                            <span class="font-anton text-3xl text-white">$17,000 <span class="text-xs font-mono text-gray-400">MXN</span></span>
+                        </div>
+                        <h3 class="font-anton text-4xl uppercase text-brand-white mb-4">03 Experiencia Completa — Foto + Cine</h3>
+                        <p class="font-inter text-gray-300 text-sm leading-relaxed mb-8">
+                            La cobertura integral de su día. Dos realizadores dedicados capturando cada segundo tanto en formato cinematográfico 4K con sonido directo como en fotografía editorial sin poses.
+                        </p>
+                        
+                        <ul class="space-y-3 font-mono text-xs text-gray-300 mb-8 border-t border-brand-gray py-6">
+                            <li class="flex items-center gap-3">✓ Cobertura de día completo (Preparativos hasta fiesta)</li>
+                            <li class="flex items-center gap-3">✓ Filme documental de boda (15 a 20 minutos)</li>
+                            <li class="flex items-center gap-3">✓ Teaser para redes sociales (60 segs)</li>
+                            <li class="flex items-center gap-3">✓ Galería fotográfica completa en alta resolución (800+ fotos)</li>
+                            <li class="flex items-center gap-3">✓ Grabación de audio directo (votos, brindis, risas reales)</li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <button onclick="selectPackage('03 Experiencia Completa — Foto + Cine')" class="w-full font-mono text-sm bg-brand-red hover:bg-white hover:text-brand-black text-white font-bold py-4 uppercase tracking-widest transition-all duration-300 cursor-pointer">
+                            Seleccionar Paquete [ COTIZAR ]
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Package 4: 04 Paquete Eterno — VIP -->
+                <div class="bg-brand-charcoal border border-brand-gray p-8 md:p-12 shadow-2xl flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-start mb-2">
+                            <span class="font-mono text-brand-red text-xs tracking-widest uppercase">MÓDULO 04 // TODO INCLUIDO VIP</span>
+                            <span class="font-anton text-3xl text-white">$30,000 <span class="text-xs font-mono text-gray-400">MXN</span></span>
+                        </div>
+                        <h3 class="font-anton text-4xl uppercase text-brand-white mb-4">04 Paquete Eterno — VIP</h3>
+                        <p class="font-inter text-gray-300 text-sm leading-relaxed mb-8">
+                            La experiencia sin reservas. Cine + Fotografía + Todos los módulos extra incluidos (Drone, VHS Old School, Entrega en 24h y Sesión Pre-Boda).
+                        </p>
+                        
+                        <ul class="space-y-3 font-mono text-xs text-gray-300 mb-8 border-t border-brand-gray py-6">
+                            <li class="flex items-center gap-3">✓ Cine Documental + Fotografía Completa</li>
+                            <li class="flex items-center gap-3">✓ Tomas de Drone FPOV 4K incluidas</li>
+                            <li class="flex items-center gap-3">✓ Cámaras Old School VHS / Hi8 incluidas</li>
+                            <li class="flex items-center gap-3">✓ Flash Delivery (Entrega destacada en 24 hrs)</li>
+                            <li class="flex items-center gap-3">✓ Sesión Pre-Boda o Post-Boda en exteriores</li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <button onclick="selectPackage('04 Paquete Eterno — VIP')" class="w-full font-mono text-sm bg-brand-gray hover:bg-brand-red hover:text-white text-white font-bold py-4 uppercase tracking-widest transition-all duration-300 cursor-pointer">
+                            Seleccionar Paquete [ COTIZAR ]
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-brand-black pt-16 pb-8 border-t border-brand-gray">
+        <div class="container mx-auto px-6">
+            <div class="text-center md:text-left mb-16 pb-12 border-b border-brand-gray flex flex-col md:flex-row justify-between items-center gap-8">
+                <div>
+                    <h2 class="font-anton text-4xl md:text-6xl text-brand-white uppercase">¿Hacemos ruido?</h2>
+                    <p class="font-mono text-gray-400 mt-2">CUÉNTENNOS SU HISTORIA. CERO FILTROS.</p>
+                </div>
+                <a href="contacto.html" class="font-anton text-2xl border-b-4 border-brand-red pb-1 text-brand-white hover:text-brand-red hover:border-brand-white transition-colors duration-300 uppercase">
+                    Ir a Contacto &rarr;
+                </a>
+            </div>
+
+            <div class="flex flex-col md:flex-row justify-between items-center text-gray-500 font-mono text-xs">
+                <div class="mb-4 md:mb-0 text-center md:text-left">
+                    <span class="font-anton text-2xl text-brand-white tracking-widest block mb-2">RUBIO FILMS.</span>
+                    <p>© 2026 CINE Y FOTOGRAFÍA DOCUMENTAL.</p>
+                </div>
+                <div class="flex space-x-8">
+                    <a href="#" class="hover:text-brand-red transition-colors">INSTAGRAM</a>
+                    <a href="#" class="hover:text-brand-red transition-colors">VIMEO</a>
+                    <a href="paquetes.html" class="hover:text-brand-white transition-colors text-brand-red">PAQUETES</a>
+                    <a href="extras.html" class="hover:text-brand-white transition-colors">EXTRAS</a>
+                    <a href="contacto.html" class="hover:text-brand-white transition-colors">CONTACTO</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle & Package Selection
+        document.addEventListener('DOMContentLoaded', () => {
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const navMenu = document.getElementById('nav-menu');
+
+            mobileMenuBtn.addEventListener('click', () => {
+                navMenu.classList.toggle('hidden');
+            });
+        });
+
+        function selectPackage(packageName) {
+            localStorage.setItem('selectedPackage', packageName);
+            window.location.href = 'contacto.html';
+        }
+    </script>
+    <!-- Floating WhatsApp Widget -->
+    <a href="https://wa.me/525500000000?text=Hola%20Rubio%20Films,%20me%20gustaría%20información%20sobre%20sus%20paquetes%20de%20boda" target="_blank" class="fixed bottom-6 right-6 z-50 bg-[#25D366] hover:bg-[#20ba5a] text-white p-4 rounded-full shadow-2xl flex items-center justify-center transition-all duration-300 hover:scale-110 group" aria-label="WhatsApp">
+        <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.124-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+        <span class="max-w-0 overflow-hidden whitespace-nowrap group-hover:max-w-xs transition-all duration-500 ease-in-out font-mono text-xs font-bold pl-0 group-hover:pl-2">WhatsApp</span>
+    </a>
+</body>
+</html>
