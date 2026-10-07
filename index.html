@@ -83,31 +83,6 @@
         .raw-filter:hover, .group:hover .raw-filter {
             filter: grayscale(0%) contrast(110%) brightness(100%);
         }
-
-        /* Tape Effect for photos */
-        .tape {
-            position: absolute;
-            background-color: rgba(255, 255, 255, 0.3);
-            box-shadow: 0 1px 3px rgba(0,0,0,0.5);
-            backdrop-filter: blur(3px);
-        }
-
-        /* Contact Sheet styling */
-        .contact-sheet-img {
-            position: relative;
-            overflow: hidden;
-        }
-        .contact-sheet-img::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            border: 1px solid #2a2a2a;
-            pointer-events: none;
-            transition: border-color 0.3s;
-        }
-        .contact-sheet-img:hover::after {
-            border-color: #9b0000;
-        }
         
         /* Custom scrollbar for webkit */
         ::-webkit-scrollbar {
@@ -157,29 +132,82 @@
 
     <main class="pt-24 min-h-screen">
         
-        <section class="relative min-h-[85vh] flex items-center overflow-hidden border-b border-brand-gray pb-12 md:pb-0" id="hero">
+        <section class="relative min-h-[85vh] flex items-center overflow-hidden border-b border-brand-gray pb-20 md:pb-0" id="hero">
             <div class="absolute top-20 left-10 font-mono text-xs text-gray-600 rotate-90 transform origin-left opacity-30 tracking-widest">
                 TOMA 04 // 2026 // MX
             </div>
             
-            <div class="container mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-8 items-center relative z-10 py-12">
+            <div class="container mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-12 items-center relative z-10 py-16">
                 
-                <!-- Hero Collage -->
-                <div class="relative h-[50vh] md:h-[60vh] w-full flex justify-center items-center">
-                    <div class="absolute w-64 md:w-80 h-80 md:h-96 bg-brand-charcoal transform -rotate-3 z-10 border-[12px] border-brand-white pb-12 shadow-2xl transition-transform hover:-rotate-1 duration-500">
-                        <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&q=80&w=800" alt="Pareja corriendo de noche" class="w-full h-full object-cover raw-filter">
-                        <div class="absolute bottom-3 right-4 font-mono text-xs text-brand-black transform rotate-2 font-bold">RUIDO</div>
-                        <div class="tape w-20 h-8 -top-4 left-10 -rotate-6"></div>
-                    </div>
+                <!-- ========================================== -->
+                <!-- ESTRUCTURA DEL COLLAGE ESCALADO -->
+                <!-- ========================================== -->
+                <!-- El max-w-[850px] asegura que sea enorme en pantallas grandes -->
+                <div class="relative w-full max-w-[500px] md:max-w-[650px] lg:max-w-[750px] xl:max-w-[850px] mx-auto lg:mr-auto mt-10 lg:mt-0 flex justify-center items-center group">
                     
-                    <div class="absolute w-48 md:w-64 h-64 md:h-72 bg-brand-charcoal transform rotate-6 translate-x-24 md:translate-x-32 -translate-y-12 z-20 border-4 border-brand-white shadow-xl transition-transform hover:rotate-3 duration-500">
-                        <img src="https://images.unsplash.com/photo-1543269865-cbf427effbad?auto=format&fit=crop&q=80&w=600" alt="Gente bailando" class="w-full h-full object-cover raw-filter">
-                        <div class="tape w-12 h-6 -bottom-3 right-4 -rotate-12"></div>
+                    <!-- Marco principal negro -->
+                    <div class="relative bg-[#0d0d0d] p-1 md:p-2 shadow-2xl z-10 border border-[#222] w-full">
+                        
+                        <!-- Borde de papel rasgado IZQUIERDO -->
+                        <div class="absolute -left-6 md:-left-8 top-[15%] h-[60%] w-10 md:w-12 bg-brand-white border border-gray-300 -z-10 shadow-sm flex items-center justify-center">
+                            <span class="transform -rotate-90 whitespace-nowrap font-mono text-[10px] md:text-xs text-brand-red tracking-widest font-bold">MX // 2026</span>
+                        </div>
+                        
+                        <!-- Borde de papel rasgado INFERIOR -->
+                        <div class="absolute -bottom-6 md:-bottom-8 left-[10%] w-[70%] h-12 md:h-16 bg-brand-white border border-gray-300 -z-10 shadow-sm flex items-center px-6">
+                            <span class="font-mono text-brand-red text-xs md:text-sm transform -rotate-2 font-bold underline decoration-2 underline-offset-2">TOMA 04</span>
+                        </div>
+
+                        <!-- Cintas negras (Tape) reescaladas -->
+                        <div class="absolute top-[-12px] md:top-[-16px] left-[30%] w-24 md:w-32 h-7 md:h-9 bg-[#161616] border border-[#222] shadow-md -rotate-2 z-30 opacity-95"></div>
+                        <div class="absolute bottom-[-15px] md:bottom-[-20px] left-[45%] w-28 md:w-40 h-8 md:h-10 bg-[#161616] border border-[#222] shadow-md rotate-3 z-30 opacity-95"></div>
+                        <div class="absolute top-[40%] -left-6 md:-left-8 w-7 md:w-10 h-20 md:h-32 bg-[#161616] border border-[#222] shadow-md -rotate-6 z-30 opacity-95"></div>
+                        
+                        <!-- Textos rojos superpuestos al marco -->
+                        <div class="absolute top-8 left-3 md:top-12 md:left-4 text-brand-red font-mono text-[10px] md:text-xs transform -rotate-90 origin-top-left z-20">TOMA 04</div>
+                        <div class="absolute top-4 right-6 md:top-6 md:right-8 text-brand-red font-mono text-sm md:text-base tracking-widest font-bold transform rotate-3 z-20">MX // 2026</div>
+                        <div class="absolute -bottom-2 right-4 md:-bottom-3 md:right-6 text-brand-red font-mono text-sm md:text-base tracking-widest font-bold transform -rotate-2 z-20 bg-[#0d0d0d] px-2">RUIDO & AMOR</div>
+
+                        <!-- ====== REEMPLAZAR: 1. FOTO PRINCIPAL ====== -->
+                        <img src="https://res.cloudinary.com/df2m2fetr/image/upload/v1791388323/IMG_1007_wwdyaf.jpg" alt="Pareja principal" class="w-full aspect-[4/5] sm:aspect-[3/4] md:aspect-auto h-auto object-cover raw-filter relative z-10 border-[10px] md:border-[20px] border-[#0d0d0d]">
+                        
+                        <!-- ====== SUB-COLLAGE ESQUINA SUPERIOR DERECHA ====== -->
+                        <div class="absolute -top-12 -right-6 md:-top-16 md:-right-20 lg:-right-24 z-40 w-44 md:w-64 lg:w-80 flex flex-col items-end">
+                            
+                            <!-- ====== REEMPLAZAR: 2. FOTO MANOS ====== -->
+                            <div class="relative border-[3px] md:border-[5px] border-brand-white transform -rotate-12 mb-[-30px] md:mb-[-40px] mr-12 md:mr-24 z-10 shadow-xl group/img">
+                                <img src="https://res.cloudinary.com/df2m2fetr/image/upload/v1791386012/IMG_2462_hca9qf.jpg" alt="Detalle anillos" class="w-24 md:w-36 lg:w-48 h-auto raw-filter grayscale">
+                                <div class="absolute -top-3 left-4 md:-top-4 md:left-6 w-12 md:w-16 h-5 md:h-7 bg-[#161616] border border-[#222] shadow-sm -rotate-6"></div>
+                            </div>
+                            
+                            <!-- ====== REEMPLAZAR: 3. FOTO FIESTA ====== -->
+                            <div class="relative border-[3px] md:border-[5px] border-brand-white transform rotate-6 mb-[-25px] md:mb-[-35px] mr-2 md:mr-4 z-20 shadow-xl group/img">
+                                <img src="https://res.cloudinary.com/df2m2fetr/image/upload/v1791388492/IMG_1336_snk3qv.jpg" alt="Fiesta" class="w-28 md:w-40 lg:w-56 h-auto raw-filter">
+                                <div class="absolute -top-2 right-2 md:-top-3 md:right-4 w-10 md:w-14 h-4 md:h-6 bg-[#161616] border border-[#222] shadow-sm rotate-12"></div>
+                            </div>
+                            
+                            <!-- ====== REEMPLAZAR: 4. FOTO CÁMARA ====== -->
+                            <div class="relative bg-brand-white p-1 md:p-2 pb-5 md:pb-8 transform -rotate-3 z-30 shadow-xl border border-gray-300 group/img">
+                                <img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&q=80&w=600" alt="Cámara Vintage" class="w-32 md:w-48 lg:w-64 h-auto raw-filter">
+                            </div>
+
+                        </div>
+
+                        <!-- Boleto Vintage Esquina Inferior Derecha -->
+                        <div class="absolute -bottom-8 -right-4 md:-bottom-12 md:-right-10 z-40 transform rotate-12">
+                            <div class="bg-[#dcd1c4] text-[#8b3a3a] font-mono text-[8px] md:text-xs font-bold py-6 px-2 md:py-8 md:px-4 border border-[#b8ab9a] shadow-lg flex items-center justify-center border-dashed border-y-0">
+                                <span class="transform rotate-90 tracking-widest whitespace-nowrap">COBOJETO</span>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
+                <!-- ========================================== -->
+                <!-- FIN DE LA ESTRUCTURA DEL COLLAGE PRINCIPAL -->
+                <!-- ========================================== -->
 
                 <!-- Hero Typography -->
-                <div class="flex flex-col justify-center lg:pl-12 mt-8 lg:mt-0">
+                <div class="flex flex-col justify-center lg:pl-8 xl:pl-16 mt-12 lg:mt-0">
                     <h1 class="font-anton text-6xl md:text-8xl lg:text-[6.5rem] leading-[0.85] tracking-tight uppercase text-brand-white mb-6">
                         Documentar <br> lo que <br> realmente <br> pasó
                     </h1>
@@ -187,10 +215,10 @@
                         <p class="font-mono text-brand-red text-lg font-bold uppercase tracking-widest border-l-2 border-brand-red pl-4">
                             Sin poses.<br>Sin clichés.<br>Sin actuar.
                         </p>
-                        <p class="text-gray-400 text-sm md:text-base leading-relaxed font-inter">
-                            <p >Alternative weddings for people who do things differently.</P>
-                                 Fotografía y cine para contar lo que hace única a tu boda: lo inesperado, lo íntimo, lo caótico y todo lo que pasa entre medias.
-                        </p>
+                        <div class="text-gray-400 text-sm md:text-base leading-relaxed font-inter space-y-2">
+                            <p>Alternative weddings for people who do things differently.</p>
+                            <p>Fotografía y cine para contar lo que hace única a tu boda: lo inesperado, lo íntimo, lo caótico y todo lo que pasa entre medias.</p>
+                        </div>
                         <a href="fotografia.html" class="inline-block font-mono text-sm border-2 border-brand-white hover:border-brand-red px-8 py-4 hover:bg-brand-red text-brand-white transition-all duration-300 mt-4 uppercase tracking-widest font-bold group">
                             Explorar Archivo <span class="inline-block transition-transform group-hover:translate-x-2">&rarr;</span>
                         </a>
@@ -219,7 +247,7 @@
             <!-- Visual Image -->
             <div class="md:w-1/2 order-2 md:order-1 relative group">
                 <div class="relative bg-brand-charcoal p-4 border border-brand-gray">
-                    <img src="https://images.unsplash.com/photo-1554384645-13eab165c24b?auto=format&fit=crop&q=80&w=800" 
+                    <img src="https://res.cloudinary.com/df2m2fetr/image/upload/v1791386503/193441d8-bf1a-47cf-8683-305c31ee0f8d_ryesop.jpg" 
                          alt="Fotografía documental de boda" 
                          class="w-full aspect-[4/5] object-cover raw-filter">
                     
@@ -302,7 +330,7 @@
                 <a href="cine.html" class="block max-w-5xl mx-auto bg-brand-black border border-brand-gray p-2 shadow-2xl group cursor-pointer relative">
                     <div class="relative w-full aspect-video bg-black overflow-hidden border border-brand-gray/50">
                         <!-- Video Poster / Still -->
-                        <img src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&q=80&w=1200" alt="Concert/Party style wedding" class="w-full h-full object-cover raw-filter opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700">
+                        <img src="https://www.facebook.com/share/v/1F8MJXBtaf/" alt="Concert/Party style wedding" class="w-full h-full object-cover raw-filter opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700">
                         
                         <!-- Video UI Overlay -->
                         <div class="absolute inset-0 flex flex-col justify-between p-4 md:p-6 bg-gradient-to-t from-black/80 via-transparent to-black/40 pointer-events-none">
