@@ -58,42 +58,7 @@
         }
     </script>
 
-    <style>
-        body {
-            color: #e5e5e5;
-            overflow-x: hidden;
-        }
-        .film-grain {
-            position: fixed;
-            top: -50%; left: -50%; right: -50%; bottom: -50%;
-            width: 200%; height: 200vh;
-            background: transparent url('data:image/svg+xml,%3Csvg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"%3E%3Cfilter id="noiseFilter"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" stitchTiles="stitch"/%3E%3C/filter%3E%3Crect width="100%25" height="100%25" filter="url(%23noiseFilter)" opacity="0.12"/%3E%3C/svg%3E');
-            pointer-events: none;
-            z-index: 9999;
-            animation: noise 0.3s infinite;
-        }
-        input, textarea, select {
-            background-color: #161616 !important;
-            border: 1px solid #2a2a2a !important;
-            color: #e5e5e5 !important;
-        }
-        input:focus, textarea:focus, select:focus {
-            border-color: #9b0000 !important;
-            outline: none !important;
-        }
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #0a0a0a;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #2a2a2a;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #9b0000;
-        }
-    </style>
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 <body class="font-inter antialiased selection:bg-brand-red selection:text-white">
 
@@ -248,16 +213,10 @@
         </div>
     </footer>
 
+    <script src="js/main.js" defer></script>
     <script>
-        // Mobile Menu Toggle, Min Date Setup & Extra Pre-fill
+        // Min Date Setup & Quote Pre-fill
         document.addEventListener('DOMContentLoaded', () => {
-            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-            const navMenu = document.getElementById('nav-menu');
-
-            mobileMenuBtn.addEventListener('click', () => {
-                navMenu.classList.toggle('hidden');
-            });
-
             // Set minimum date for event (today + 7 days)
             const minDate = new Date();
             minDate.setDate(minDate.getDate() + 7);
@@ -268,33 +227,32 @@
             if (dd < 10) dd = '0' + dd;
             document.getElementById('fechaEvento').min = `${yyyy}-${mm}-${dd}`;
 
-            // Check if user selected a package or extras
-            const selectedPackage = localStorage.getItem('selectedPackage');
-            const selectedExtras = localStorage.getItem('selectedExtras');
-            const selectedExtra = localStorage.getItem('selectedExtra');
+            // Load unified quote state (package + extras)
+            const quoteData = localStorage.getItem('rubioFilmsQuote');
             const servicioSelect = document.getElementById('servicio');
             const mensajeField = document.getElementById('mensaje');
 
-            if (selectedPackage) {
-                if (servicioSelect) {
-                    servicioSelect.value = selectedPackage;
-                }
-                localStorage.removeItem('selectedPackage');
-            }
-
-            if (selectedExtras) {
+            if (quoteData) {
                 try {
-                    const extrasArray = JSON.parse(selectedExtras);
-                    if (Array.isArray(extrasArray) && extrasArray.length > 0) {
-                        mensajeField.value = `[ Módulos Extras Solicitados (${extrasArray.length}): ]\n` + extrasArray.map(e => `- ${e}`).join('\n') + `\n\n`;
+                    const quote = JSON.parse(quoteData);
+                    if (quote.package && servicioSelect) {
+                        servicioSelect.value = quote.package;
+                    }
+
+                    let summaryParts = [];
+                    if (quote.package) {
+                        summaryParts.push(`[ Paquete Principal: ${quote.package} ]`);
+                    }
+                    if (quote.extras && Array.isArray(quote.extras) && quote.extras.length > 0) {
+                        summaryParts.push(`[ Módulos Extras Solicitados (${quote.extras.length}): ]\n` + quote.extras.map(e => `- ${e}`).join('\n'));
+                    }
+
+                    if (summaryParts.length > 0) {
+                        mensajeField.value = summaryParts.join('\n\n') + `\n\n---\nComentarios o locación adicional: `;
                     }
                 } catch (e) {
-                    mensajeField.value = `[ Módulos Extras Solicitados: ${selectedExtras} ]\n\n`;
+                    console.error('Error loading quote:', e);
                 }
-                localStorage.removeItem('selectedExtras');
-            } else if (selectedExtra) {
-                mensajeField.value = `[ Módulo Extra Solicitado: ${selectedExtra} ]\n\n`;
-                localStorage.removeItem('selectedExtra');
             }
         });
 

@@ -58,61 +58,7 @@
         }
     </script>
 
-    <style>
-        body {
-            color: #e5e5e5;
-            overflow-x: hidden;
-        }
-        .film-grain {
-            position: fixed;
-            top: -50%; left: -50%; right: -50%; bottom: -50%;
-            width: 200%; height: 200vh;
-            background: transparent url('data:image/svg+xml,%3Csvg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"%3E%3Cfilter id="noiseFilter"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" stitchTiles="stitch"/%3E%3C/filter%3E%3Crect width="100%25" height="100%25" filter="url(%23noiseFilter)" opacity="0.12"/%3E%3C/svg%3E');
-            pointer-events: none;
-            z-index: 9999;
-            animation: noise 0.3s infinite;
-        }
-        .raw-filter {
-            filter: grayscale(100%) contrast(140%) brightness(80%);
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .raw-filter:hover, .group:hover .raw-filter {
-            filter: grayscale(0%) contrast(110%) brightness(100%);
-        }
-        .tape {
-            position: absolute;
-            background-color: rgba(255, 255, 255, 0.3);
-            box-shadow: 0 1px 3px rgba(0,0,0,0.5);
-            backdrop-filter: blur(3px);
-        }
-        .contact-sheet-img {
-            position: relative;
-            overflow: hidden;
-        }
-        .contact-sheet-img::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            border: 1px solid #2a2a2a;
-            pointer-events: none;
-            transition: border-color 0.3s;
-        }
-        .contact-sheet-img:hover::after {
-            border-color: #9b0000;
-        }
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #0a0a0a;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #2a2a2a;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #9b0000;
-        }
-    </style>
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 <body class="font-inter antialiased selection:bg-brand-red selection:text-white">
 
@@ -291,17 +237,8 @@
         </div>
     </footer>
 
+    <script src="js/main.js" defer></script>
     <script>
-        // Mobile Menu Toggle
-        document.addEventListener('DOMContentLoaded', () => {
-            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-            const navMenu = document.getElementById('nav-menu');
-
-            mobileMenuBtn.addEventListener('click', () => {
-                navMenu.classList.toggle('hidden');
-            });
-        });
-
         // Filter Functionality
         function filterPhotos(category) {
             const items = document.querySelectorAll('.gallery-item');
